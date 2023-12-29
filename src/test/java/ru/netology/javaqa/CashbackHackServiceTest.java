@@ -1,6 +1,7 @@
 package ru.netology.javaqa;
 
 
+import org.junit.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
@@ -54,6 +55,46 @@ public class CashbackHackServiceTest {
         int actual = service.remain(amount);
         int expected = 1000;
         assertEquals (actual,expected);
+    }
+    @org.junit.Test
+    public void calculateBonusIfAmountSum0() {
+        CashbackHackService service = new CashbackHackService();
+        int amount = 0;
+        int actual = service.remain(amount);
+        int expected = 1000;
+        Assert.assertEquals(expected,actual);
+    }
+    @org.junit.Test
+    public void calculateBonusIfAmountSum1() {
+        CashbackHackService service = new CashbackHackService();
+        int amount = 1;
+        int actual = service.remain(amount);
+        int expected = 999;
+        Assert.assertEquals(expected,actual);
+    }
+    @org.junit.Test
+    public void calculateBonusIfAmountSum999() {
+        CashbackHackService service = new CashbackHackService();
+        int amount = 999;
+        int actual = service.remain(amount);
+        int expected = 1;
+        Assert.assertEquals(expected,actual);
+    }
+    @org.junit.Test
+    public void calculateBonusIfAmountSum1001() {
+        CashbackHackService service = new CashbackHackService();
+        int amount = 1001;
+        int actual = service.remain(amount);
+        int expected = 999;
+        Assert.assertEquals(expected,actual);
+    }
+    @org.junit.Test
+    public void calculateBonusIfAmountSum1000() {
+        CashbackHackService service = new CashbackHackService();
+        int amount = 1000;
+        int actual = service.remain(amount);
+        int expected = 0;
+        Assert.assertEquals(expected,actual);
     }
 
 }
